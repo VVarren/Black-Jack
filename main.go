@@ -21,11 +21,19 @@ func main() {
 		fmt.Scan(&input)
 		if input == "Quit" {
 			//winTeller case 2
-			winTeller(playerHand, dealerHand, 2)
+			if winTeller(playerHand, dealerHand, 2) == "Player has won!" {
+				fmt.Println("Player has won!")
+				notWin = false
+			}
+			if winTeller(playerHand, dealerHand, 2) == "Computer has won!" {
+				fmt.Println("Computer has won!")
+				notWin = false
+			}
 
 		} else if input == "Change" {
-			fmt.Print("")
-			//playerHand = oneToEleven()
+			playerHand = oneToEleven(playerHand)
+			fmt.Print("It has been changed")
+			fmt.Println(playerHand)
 
 			//dealer must draw aswell as i cannot tell if the computer wnats to or not
 		} else if input == "Draw" {
@@ -47,6 +55,16 @@ func main() {
 
 //i've ran it before and it works
 
+func oneToEleven(Hand []int) []int {
+	for i := 0; i < len(Hand); i++ {
+		if Hand[i] == 11 {
+			Hand[i] = 1
+		} else if Hand[i] == 1 {
+			Hand[i] = 11
+		}
+	}
+	return Hand
+}
 func initialHand() []int {
 	arr := [14]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11}
 	list := make([]int, 0)
@@ -76,7 +94,7 @@ func winTeller(playerHand []int, dealerHand []int, cases int) string {
 			return "Computer has won!"
 		}
 	}
-	return ""
+	return "This doesnt work"
 }
 
 func sum(arr []int) int {
