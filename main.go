@@ -6,6 +6,10 @@ import (
 	"time"
 )
 
+//TO-DO LISt
+// UI
+// Maybe make the computer more intelligent and entirely up to the player
+
 func main() {
 	var input string
 	arr := [14]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11}
@@ -20,7 +24,7 @@ func main() {
 
 		fmt.Scan(&input)
 		if input == "Quit" {
-			//winTeller case 2
+
 			if winTeller(playerHand, dealerHand, 2) == "Player has won!" {
 				fmt.Println("Player has won!")
 				notWin = false
@@ -35,7 +39,6 @@ func main() {
 			fmt.Print("It has been changed")
 			fmt.Println(playerHand)
 
-			//dealer must draw aswell as i cannot tell if the computer wnats to or not
 		} else if input == "Draw" {
 			playerHand = append(playerHand, arr[rand.Intn(len(arr)-1)])
 			dealerHand = append(dealerHand, arr[rand.Intn(len(arr)-1)])
@@ -47,13 +50,9 @@ func main() {
 				notWin = false
 			}
 		}
-		//user input to draw or not
-		//stop when player has stopped drawing
-		//stop when
+
 	}
 }
-
-//i've ran it before and it works
 
 func oneToEleven(Hand []int) []int {
 	for i := 0; i < len(Hand); i++ {
@@ -77,8 +76,7 @@ func initialHand() []int {
 }
 
 func winTeller(playerHand []int, dealerHand []int, cases int) string {
-	//Make 2 switch cases. First we run the one if the Hands are over 21 and
-	//when the players stops drawing to compare the cards
+
 	switch cases {
 	case 1:
 		if sum(dealerHand) > 21 {
