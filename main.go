@@ -28,7 +28,7 @@ func main() {
 			//playerHand = oneToEleven()
 
 			//dealer must draw aswell as i cannot tell if the computer wnats to or not
-		}else if input == "Draw" {
+		} else if input == "Draw" {
 			playerHand = append(playerHand, arr[rand.Intn(len(arr)-1)])
 			dealerHand = append(dealerHand, arr[rand.Intn(len(arr)-1)])
 			if winTeller(playerHand, dealerHand, 1) == "Computer Lost" {
@@ -38,13 +38,14 @@ func main() {
 				fmt.Println("Computer Won")
 				notWin = false
 			}
+		}
 		//user input to draw or not
 		//stop when player has stopped drawing
 		//stop when
 	}
 }
 
-
+//i've ran it before and it works
 
 func initialHand() []int {
 	arr := [14]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11}
@@ -84,15 +85,4 @@ func sum(arr []int) int {
 		total += arr[i]
 	}
 	return total
-}
-
-func oneToEleven(Hand []int) []int{
-	for i=0;i<len(Hand);i++{
-		if Hand[i] == 11{
-			Hand[i] == 1
-		} else if Hand[i] == 1{
-			Hand[i] == 11
-		}
-	}
-	return Hand
 }
