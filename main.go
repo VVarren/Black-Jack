@@ -17,12 +17,15 @@ func main() {
 	playerHand := initialHand()
 	dealerHand := initialHand()
 	rand.Seed(time.Now().UnixNano())
-	fmt.Println()
+
 	for notWin {
+		fmt.Print(playerHand)
+		fmt.Println("Player Hand")
 		fmt.Println("Type 'Draw' to draw a card and 'Quit' to quit")
 		fmt.Println("If you wnat to change your ace(11) to a 1 or vice versa type 'Change' ")
 
 		fmt.Scan(&input)
+		fmt.Println("Computer Won")
 		if input == "Quit" {
 
 			if winTeller(playerHand, dealerHand, 2) == "Player has won!" {
@@ -42,6 +45,8 @@ func main() {
 		} else if input == "Draw" {
 			playerHand = append(playerHand, arr[rand.Intn(len(arr)-1)])
 			dealerHand = append(dealerHand, arr[rand.Intn(len(arr)-1)])
+			fmt.Print(playerHand)
+			fmt.Println(dealerHand)
 			if winTeller(playerHand, dealerHand, 1) == "Computer Lost" {
 				fmt.Println("Player has won")
 				notWin = false
