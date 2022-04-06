@@ -14,19 +14,15 @@ var arr [14]int = [14]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11}
 
 func main() {
 	var input string
-
 	notWin := true
 	playerHand := initialHand()
 	dealerHand := initialHand()
 	rand.Seed(time.Now().UnixNano())
 
+	fmt.Println("Type 'Draw' to draw a card and 'Quit' to quit \nIf you wnat to change your ace(11) to a 1 or vice versa type 'Change' \nIf you want to know the commands, please  type 'Help'.")
+
 	for notWin {
-		fmt.Println(playerHand, " Player Hand")
-		fmt.Println(dealerHand, " Computer Hand")
-
-		fmt.Println("Type 'Draw' to draw a card and 'Quit' to quit")
-		fmt.Println("If you wnat to change your ace(11) to a 1 or vice versa type 'Change' ")
-
+		fmt.Println(playerHand, " Player Hand", "\n", dealerHand, " Computer Hand")
 		fmt.Scan(&input)
 
 		if input == "Quit" {
@@ -73,7 +69,6 @@ func oneToEleven(Hand []int) []int {
 	return Hand
 }
 func initialHand() []int {
-	arr := [14]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11}
 	list := make([]int, 0)
 	rand.Seed(time.Now().UnixNano())
 	r1, r2 := arr[rand.Intn(len(arr)-1)], arr[rand.Intn(len(arr)-1)]
