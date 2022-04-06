@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -24,8 +25,9 @@ func main() {
 	for notWin {
 		fmt.Println(playerHand, " Player Hand", "\n", dealerHand, " Computer Hand")
 		fmt.Scan(&input)
+		input = strings.ToUpper(input)
 
-		if input == "Quit" {
+		if input == "QUIT" {
 
 			if winTeller(playerHand, dealerHand, 2) == "Player has won!" {
 				fmt.Println("Player has won!")
@@ -36,12 +38,12 @@ func main() {
 				notWin = false
 			}
 
-		} else if input == "Change" {
+		} else if input == "CHANGE" {
 			playerHand = oneToEleven(playerHand)
 			fmt.Print("It has been changed")
 			fmt.Println(playerHand, " -> Player Hand")
 
-		} else if input == "Draw" {
+		} else if input == "DRAW" {
 			playerHand = append(playerHand, arr[rand.Intn(len(arr)-1)])
 			dealerHand = append(dealerHand, arr[rand.Intn(len(arr)-1)])
 			fmt.Print(playerHand, " -> Player Hand")

@@ -10,6 +10,6 @@ import (
 func main() {
 	var first string
 	fmt.Scanln(&first)
-	first = strings.ToUpper(first)
+	input = strings.ToUpper(input)
 	fmt.Println(first)
 }
