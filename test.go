@@ -1,6 +1,6 @@
 //This is the test file where i test stuff
 
-package main
+package main1
 
 import (
 	"fmt"

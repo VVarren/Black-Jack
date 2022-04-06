@@ -24,6 +24,7 @@ func main() {
 
 	for notWin {
 		fmt.Println(playerHand, " Player Hand", "\n", dealerHand, " Computer Hand")
+		fmt.Print("What will you do next: ")
 		fmt.Scan(&input)
 		input = strings.ToUpper(input)
 
@@ -41,13 +42,11 @@ func main() {
 		} else if input == "CHANGE" {
 			playerHand = oneToEleven(playerHand)
 			fmt.Print("It has been changed")
-			fmt.Println(playerHand, " -> Player Hand")
+			fmt.Println(playerHand, " Your hand has been changed")
 
 		} else if input == "DRAW" {
 			playerHand = append(playerHand, arr[rand.Intn(len(arr)-1)])
 			dealerHand = append(dealerHand, arr[rand.Intn(len(arr)-1)])
-			fmt.Print(playerHand, " -> Player Hand")
-			fmt.Println(dealerHand, "-> Dealer Hand")
 			if winTeller(playerHand, dealerHand, 3) == "Computer Lost" {
 				fmt.Println("Player has won")
 				notWin = false
