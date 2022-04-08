@@ -58,7 +58,6 @@ func main() {
 
 		} else if input == "CHANGE" {
 			playerHand = oneToEleven(playerHand)
-			fmt.Print("It has been changed")
 			fmt.Println(playerHand, " Your hand has been changed")
 
 		} else if input == "DRAW" {
