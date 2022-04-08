@@ -1,15 +1,21 @@
 //This is the test file where i test stuff
 
-package main1
+package main
 
 import (
 	"fmt"
-	"strings"
+	"math/rand"
+	"time"
 )
 
 func main() {
-	var first string
-	fmt.Scanln(&first)
-	input = strings.ToUpper(input)
-	fmt.Println(first)
+	rand.Seed(time.Now().UnixNano())
+	for true {
+		caller()
+
+	}
+}
+func caller() {
+	time.Sleep(1 * time.Second)
+	fmt.Println(rand.Intn(4))
 }

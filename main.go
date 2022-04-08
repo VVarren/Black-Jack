@@ -1,4 +1,4 @@
-package main
+package main1
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var arr [14]int = [14]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11}
+var arr [13]int = [13]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10}
 
 //TO-DO LISt
 // UI
@@ -20,7 +20,7 @@ func main() {
 	dealerHand := initialHand()
 	rand.Seed(time.Now().UnixNano())
 
-	fmt.Println("Type 'Draw' to draw a card and 'Quit' to quit \nIf you wnat to change your ace(11) to a 1 or vice versa type 'Change' \nIf you want to know the commands, please  type 'Help'.")
+	fmt.Println("Type 'Draw' to draw a card and 'STAND' to quit \nIf you wnat to change your ace(11) to a 1 or vice versa type 'Change' \nIf you want to know the commands, please  type 'Help'.")
 
 	for notWin {
 		fmt.Println(playerHand, " Player Hand", "\n", dealerHand, " Computer Hand")
@@ -28,16 +28,18 @@ func main() {
 		fmt.Scan(&input)
 		input = strings.ToUpper(input)
 
-		if input == "QUIT" {
-
-			if winTeller(playerHand, dealerHand, 2) == "Player has won!" {
-				fmt.Println("Player has won!")
-				notWin = false
-			}
-			if winTeller(playerHand, dealerHand, 2) == "Computer has won!" {
-				fmt.Println("Computer has won!")
-				notWin = false
-			}
+		if input == "STAND" {
+			//we will put our turn on hold and wait for the computer to say that he wnats to continue
+			/*
+				if winTeller(playerHand, dealerHand, 2) == "Player has won!" {
+					fmt.Println("Player has won!")
+					notWin = false
+				}
+				if winTeller(playerHand, dealerHand, 2) == "Computer has won!" {
+					fmt.Println("Computer has won!")
+					notWin = false
+				}
+			*/
 
 		} else if input == "CHANGE" {
 			playerHand = oneToEleven(playerHand)
@@ -45,8 +47,8 @@ func main() {
 			fmt.Println(playerHand, " Your hand has been changed")
 
 		} else if input == "DRAW" {
-			playerHand = append(playerHand, arr[rand.Intn(len(arr)-1)])
-			dealerHand = append(dealerHand, arr[rand.Intn(len(arr)-1)])
+			playerHand = append(playerHand, arr[rand.Intn(len(arr))])
+			dealerHand = append(dealerHand, arr[rand.Intn(len(arr))])
 			if winTeller(playerHand, dealerHand, 3) == "Computer Lost" {
 				fmt.Println("Player has won")
 				notWin = false
@@ -72,7 +74,7 @@ func oneToEleven(Hand []int) []int {
 func initialHand() []int {
 	list := make([]int, 0)
 	rand.Seed(time.Now().UnixNano())
-	r1, r2 := arr[rand.Intn(len(arr)-1)], arr[rand.Intn(len(arr)-1)]
+	r1, r2 := arr[rand.Intn(len(arr))], arr[rand.Intn(len(arr))]
 	list = append(list, r1)
 	list = append(list, r2)
 	return list
@@ -114,4 +116,23 @@ func sum(arr []int) int {
 		total += arr[i]
 	}
 	return total
+}
+
+func smartBot(dealerHand []int) []int {
+	//choices are draw when at 11, 16 or stand
+	if sum(dealerHand) < 11 {
+		dealerHand = append(dealerHand, arr[rand.Intn(len(arr))])
+		return dealerHand
+	}
+	if sum(dealerHand) < 16 {
+		num := rand.Intn(2)
+		if num == 1 {
+			dealerHand = append(dealerHand, arr[rand.Intn(len(arr))])
+			return dealerHand
+		}
+		if num == 2 {
+			return dealerHand
+		}
+	}
+	return dealerHand
 }
