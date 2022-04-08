@@ -11,11 +11,13 @@ var arr [13]int = [13]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10}
 
 //TO-DO LISt
 // UI
-// Maybe make the computer more intelligent and entirely up to the player
+
 
 func main() {
 	var input string
 	notWin := true
+	PlayerStand := false
+	DealerStand := false
 	playerHand := initialHand()
 	dealerHand := initialHand()
 	rand.Seed(time.Now().UnixNano())
@@ -29,8 +31,21 @@ func main() {
 		input = strings.ToUpper(input)
 
 		if input == "STAND" {
-			//we will put our turn on hold and wait for the computer to say that he wnats to continue
-			/*
+			PlayerStand = true
+			dealerHand = smartBot(dealerHand)
+			for !PlayerStand || !DealerStand {
+				if sum(dealerHand)> 19 {
+					DealerStand = true
+			} else {
+				num := rand.Intn(1)
+				if num == 1 {
+					DealerStand = true
+				} else{
+					dealerHand = append(dealerHand, arr[rand.Intn(len(arr))])
+				}
+			}
+
+			if PlayerStand || DealerStand {
 				if winTeller(playerHand, dealerHand, 2) == "Player has won!" {
 					fmt.Println("Player has won!")
 					notWin = false
@@ -39,7 +54,7 @@ func main() {
 					fmt.Println("Computer has won!")
 					notWin = false
 				}
-			*/
+			}
 
 		} else if input == "CHANGE" {
 			playerHand = oneToEleven(playerHand)
@@ -123,15 +138,14 @@ func smartBot(dealerHand []int) []int {
 	if sum(dealerHand) < 11 {
 		dealerHand = append(dealerHand, arr[rand.Intn(len(arr))])
 		return dealerHand
-	}
-	if sum(dealerHand) < 16 {
+	} else if sum(dealerHand) < rand.Intn(3)+16 {
 		num := rand.Intn(2)
-		if num == 1 {
+		if num == 0 {
+			return dealerHand
+		} else if num == 1 {
 			dealerHand = append(dealerHand, arr[rand.Intn(len(arr))])
 			return dealerHand
-		}
-		if num == 2 {
-			return dealerHand
+
 		}
 	}
 	return dealerHand

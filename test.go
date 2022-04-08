@@ -4,18 +4,9 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-	for true {
-		caller()
+	fmt.Println(true || false)
 
-	}
-}
-func caller() {
-	time.Sleep(1 * time.Second)
-	fmt.Println(rand.Intn(4))
 }
